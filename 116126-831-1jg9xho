@@ -1,0 +1,4 @@
+
+          module.exports = require("/sdb/www/html/AwesomeProject/node_modules/react-native/packager/react-packager/src/JSTransformer/worker.js");
+          require("/sdb/www/html/AwesomeProject/node_modules/react-native/packager/transformer.js");
+          

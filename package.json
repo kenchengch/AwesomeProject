@@ -1,0 +1,13 @@
+{
+  "name": "AwesomeProject",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react-audio-recorder": "^0.1.0",
+    "react-native": "^0.19.0",
+    "react-native-cordova-plugin": "git+https://github.com/ncnlinh/react-native-cordova-plugin.git#f01aa66fd4f280f72834a67f8556b5deca6280c2"
+  }
+}
