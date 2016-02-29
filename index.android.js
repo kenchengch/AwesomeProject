@@ -1,19 +1,18 @@
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
- https://github.com/axemclion/react-native-cordova-plugin/issues/2
-  testing getCurrentBSSID
- https://github.com/parsonsmatt/WifiWizard/tree/master/www
- html sample
- https://gist.github.com/axemclion/b30bdfe991e509851705
  */
 'use strict';
 import React, {
+  Platform,
   AppRegistry,
   Component,
   StyleSheet,
   Text,
   View,
+  TouchableHighlight,
+ TouchableNativeFeedback ,
+ TouchableElement,
   NativeModules
 } from 'react-native';
 
@@ -29,26 +28,44 @@ class AwesomeProject extends Component {
   }
 
   getPlugins () {
-    cordova.device.getInfo(function(){}, function(){});
-    cordova.navigator.camera.getPicture(function(){}, function(){}, {
-      quality : 50,
+
+    cordova.navigator.camera.getPicture(function(fileUri){console.log(fileUri)}, function(){console.log('fail')}, {
+      sourceType : cordova.navigator.camera.PictureSourceType.CAMERA,
+                  encodingType: cordova.navigator.camera.EncodingType.JPEG,  targetWidth: 1280,  targetHeight: 720,
       destinationType : cordova.navigator.camera.DestinationType.FILE_URI,
       // sourceType : Camera.PictureSourceType.CAMERA,
       // targetWidth: 1000,
       // targetHeight: 1000,
       // correctOrientation: true,
-      saveToPhotoAlbum: false
 
-                  });
-    //cordova.device.model;
+          quality: 20,
+   //mediaType: cordova.navigator.camera.MediaType.CAMERA,
+
+      saveToPhotoAlbum: true
+      });
+
+  }
+  testDevice(){
+      cordova.device.getInfo(function(){console.log(cordova.device);}, function(){});
   }
   render () {
-    this.getPlugins();
+    var TouchableElement = TouchableHighlight;
+       if (Platform.OS === 'android') {
+        TouchableElement = TouchableNativeFeedback;
+       }
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
+
+       <TouchableElement
+              style={styles.button}
+              onPress={()=>this.getPlugins()}>
+              <View>
+                <Text >Button!</Text>
+              </View>
+            </TouchableElement>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
         </Text>
@@ -77,6 +94,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5
+  },
+  button: {
+    textAlign: 'center',
+     color: '#ffffff',
+
+
+
+
+
   }
 });
 
